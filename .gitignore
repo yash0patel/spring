@@ -4,6 +4,11 @@ build/
 *.class
 .metadata/
 
+*.env
+application.properties
+application.yml
+
+
 # Maven wrapper
 !.mvn/wrapper/maven-wrapper.jar
 
