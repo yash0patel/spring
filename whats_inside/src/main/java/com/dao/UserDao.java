@@ -109,10 +109,8 @@ public class UserDao {
 	}
 
 	public String getRoleByEmail(String email) {
-		System.out.println(email);
 		try {
-			UserBean userBean = stmt.queryForObject("select * from users where email = ?", new BeanPropertyRowMapper<>(UserBean.class),new Object[] {email});			
-			System.out.println(userBean);
+			UserBean userBean = stmt.queryForObject("select * from users where email = ?", new BeanPropertyRowMapper<>(UserBean.class),new Object[] {email});
 			return userBean.getRole();
 		} catch (Exception e) {
 			// TODO: handle exception
