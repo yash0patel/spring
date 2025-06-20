@@ -159,8 +159,17 @@ h2.title {
 			<div class="detail-label">EFSA Status</div>
 			<div class="detail-value"><%=(ingredient.getEfsa() != null && !ingredient.getEfsa().isEmpty()) ? ingredient.getEfsa() : "N/A"%></div>
 		</div>
-
-		<a href="listingredients" class="btn-back">Back to List</a>
+		<div class="d-flex justify-content-between mt-4">
+			<a href="listingredients" class="btn-back">Back to List</a>
+			<%
+				Long nextId = (Long) request.getAttribute("nextId");
+				if (nextId != null) {
+			%>
+				<a href="viewingredient?id=<%= nextId %>" class="btn-back">Next</a>
+			<%
+				}
+			%>
+		</div>
 	</div>
 
 	<script

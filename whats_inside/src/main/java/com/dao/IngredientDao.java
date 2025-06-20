@@ -37,4 +37,14 @@ public class IngredientDao {
 		List<IngredientBean> list = stmt.query("select * from ingredients where ingredientId = ?",new BeanPropertyRowMapper<>(IngredientBean.class), id );
 		return list.get(0);
 	}
+	
+	public Long getNextId(long id)
+	{
+		try {
+	        Long nextId = stmt.queryForObject("SELECT MIN(ingredientId) FROM ingredients WHERE ingredientId > ?",Long.class,id);
+	        return nextId;
+	    } catch (Exception e) {
+	        return null;
+	    }
+	}
 }

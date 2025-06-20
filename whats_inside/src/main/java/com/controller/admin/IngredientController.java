@@ -38,6 +38,8 @@ public class IngredientController {
 	@GetMapping("viewingredient")
 	public String viewIngredient(Integer id,Model model)
 	{
+		Long nextId = ingredientDao.getNextId(id);
+		 model.addAttribute("nextId", nextId);
 		model.addAttribute("ingredient",ingredientDao.getIngredientById(id));
 		return "ViewIngredient";
 	}
