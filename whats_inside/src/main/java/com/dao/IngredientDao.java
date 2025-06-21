@@ -47,4 +47,19 @@ public class IngredientDao {
 	        return null;
 	    }
 	}
+	
+	public List<IngredientBean> searchIngredientByName(String name) {
+        String sql = "SELECT * FROM ingredients WHERE name LIKE ? OR scientificName LIKE ?";
+        return stmt.query(
+            sql,
+            new BeanPropertyRowMapper<>(IngredientBean.class),
+            "%" + name + "%", "%" + name + "%"
+        );
+    }
+	
+	public void logEmptySearch(String searchTerm) {
+	    String sql = "INSERT INTO search_logs_empty (search_term) VALUES (?)";
+	    stmt.update(sql, searchTerm);
+	}
+
 }

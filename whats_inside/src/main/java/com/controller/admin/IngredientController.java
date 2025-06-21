@@ -1,5 +1,7 @@
 package com.controller.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ public class IngredientController {
 
 	@Autowired
 	IngredientDao ingredientDao;
+//	@Autowired
+//	IngredientBean ingredientBean;
 	
 	@GetMapping("newingredient")
 	public String newIngredient()
@@ -44,5 +48,22 @@ public class IngredientController {
 		return "ViewIngredient";
 	}
 	
+	@GetMapping("search")
+	public String searchingred(Model model)
+	{
+		return "searchingredient";
+	}
 	
+	@PostMapping("search")
+	public String searchingredindb(String name,Model model)
+	{
+		List<IngredientBean> list = ingredientDao.searchIngredientByName(name);
+	    if (list.isEmpty()) {
+	       model.addAttribute("msg", "No ingredients found.");
+	       ingredientDao.logEmptySearch(name);
+    	}
+		   
+		model.addAttribute("list", list);
+		return "searchingredient";
+	}
 }
