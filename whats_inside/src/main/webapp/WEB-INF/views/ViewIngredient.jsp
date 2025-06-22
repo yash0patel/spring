@@ -160,14 +160,32 @@ h2.title {
 			<div class="detail-value"><%=(ingredient.getEfsa() != null && !ingredient.getEfsa().isEmpty()) ? ingredient.getEfsa() : "N/A"%></div>
 		</div>
 		<div class="d-flex justify-content-between mt-4">
+			<%
+			String search_term = (String) request.getAttribute("search_term");
+			if (search_term != null) {
+			%>
+			<form id="backToSearchForm" action="search" method="post"
+				style="display: none;">
+				<input type="hidden" name="name" value="<%=search_term%>">
+			</form>
+
+			<a href="#" class="btn-back"
+				onclick="document.getElementById('backToSearchForm').submit(); return false;">
+				Back to search </a>
+			<%
+			} else {
+			%>
 			<a href="listingredients" class="btn-back">Back to List</a>
 			<%
-				Long nextId = (Long) request.getAttribute("nextId");
-				if (nextId != null) {
+			}
 			%>
-				<a href="viewingredient?id=<%= nextId %>" class="btn-back">Next</a>
 			<%
-				}
+			Long nextId = (Long) request.getAttribute("nextId");
+			if (nextId != null) {
+			%>
+			<a href="viewingredient?id=<%=nextId%>" class="btn-back">Next</a>
+			<%
+			}
 			%>
 		</div>
 	</div>

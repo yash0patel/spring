@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page import="java.util.List"%>
-<%@ page import="com.bean.IngredientBean"%>
+<%@ page import="com.bean.SearchLogBean"%>
 <%
-List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("list");
+List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ingredients</title>
+<title>Search Log List</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<jsp:include page="./includes/HeaderLink.jsp"></jsp:include>
+<jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
 <style>
 .btn-add {
 	background-color: #198754;
@@ -26,7 +26,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 }
 
 .btn-view {
-	color: #0d6efd;
+	color: #343a40;
 	border: 1px solid #0d6efd;
 	transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s
 		ease;
@@ -58,7 +58,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="./layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -66,7 +66,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="./layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -74,7 +74,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="./layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->
@@ -85,9 +85,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 				<!-- Header Section -->
 				<div
 					class="d-flex justify-content-between align-items-center mb-4 table-wrapper">
-					<div class="page-title">Ingredient List</div>
-					<a href="newingredient" class="btn btn-add rounded"> Add
-						Ingredient </a>
+					<div class="page-title">Search Log List</div>
 				</div>
 
 				<!-- Table Section -->
@@ -97,30 +95,33 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 						<thead class="table-dark text-center">
 							<tr>
 								<th>ID</th>
-								<th>Name</th>
-								<th>Scientific Name</th>
-								<th>Action</th>
+	                            <th>Search Term</th>
+	                            <th>Search Time</th>
+	                            <th>User Name</th>
+	                            <th>User Email</th>
+	                            <th>Action</th>
 							</tr>
 						</thead>
 						<tbody class="text-center">
 							<%
-							if (ingredients != null && !ingredients.isEmpty()) {
-								for (IngredientBean ing : ingredients) {
+							if (searchLog != null && !searchLog.isEmpty()) {
+								for (SearchLogBean log : searchLog) {
 							%>
 							<tr>
-								<td><%=ing.getIngredientId()%></td>
-								<td><%=ing.getName()%></td>
-								<td><%=ing.getScientificName()%></td>
-								<td><a href="viewingredient?id=<%=ing.getIngredientId()%>"
-									class="btn btn-sm btn-view"> View </a></td>
+								<td><%=log.getId()%></td>
+								<td><%=log.getSearch_term()%></td>
+								<td><%=log.getSearched_at()%></td>
+								<td><%=log.getFirstName()%></td>
+								<td><%=log.getEmail()%></td>
+								<td><a href="viewingredient?id=<%=log.getSearch_term()%>"
+									class="btn btn-sm btn-view"> fetch </a></td>
 							</tr>
 							<%
 							}
 							} else {
 							%>
 							<tr>
-								<td colspan="4" class="text-muted">No ingredients
-									available.</td>
+								<td colspan="4" class="text-muted">No search logs available.</td>
 							</tr>
 							<%
 							}
@@ -133,7 +134,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Footer start
         ***********************************-->
-			<jsp:include page="./includes/Footer.jsp"></jsp:include>
+			<jsp:include page="../includes/Footer.jsp"></jsp:include>
 			<!--**********************************
             Footer end
         ***********************************-->
@@ -143,7 +144,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 	<!--**********************************
         Scripts
     ***********************************-->
-	<jsp:include page="./includes/Scripts.jsp"></jsp:include>
+	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 </body>
 
 </html>

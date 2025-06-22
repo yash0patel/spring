@@ -1,5 +1,7 @@
 package com.controller.user;
 
+import com.util.ViewPaths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,6 @@ public class UserController {
 	@GetMapping("home")
 	public String home(Model model)
 	{
-		return "Home";
+		return ViewPaths.HOME;
 	}
 }

@@ -1,13 +1,13 @@
 <!--**********************************
             Sidebar start
         ***********************************-->
-		<div class="quixnav">
+		<div class="quixnav" style="color: #BDBDC7;">
 			<div class="quixnav-scroll">
 				<ul class="metismenu" id="menu">
 					<li class="nav-label first">Main Menu</li>
 					<!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-					<li><a class="has-arrow" href="admindashboard"
+					<li><a href="admindashboard"
 						aria-expanded="false"><i class="icon icon-single-04"></i><span
 							class="nav-text">Dashboard</span></a>
 						</li>
@@ -19,7 +19,12 @@
 						<ul aria-expanded="false">
 							<li><a href="newingredient">New</a></li>
 							<li><a href="listingredients">List</a></li>
+							<li><a href="search">Search</a></li>
 						</ul></li>
+					<li><a href="searchlog"
+						aria-expanded="false"><i class="ti-view-list-alt"></i>
+						<span class="nav-text">Search Log</span></a>
+					</li>
 					<li><a class="has-arrow" href="javascript:void()"
 						aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
 							class="nav-text">Charts</span></a>

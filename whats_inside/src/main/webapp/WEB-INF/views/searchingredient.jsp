@@ -20,7 +20,7 @@ String keyword = request.getParameter("keyword");
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Custom Header Links -->
-<jsp:include page="HeaderLink.jsp"></jsp:include>
+<jsp:include page="./includes/HeaderLink.jsp"></jsp:include>
 
 <style>
 .btn-add {
@@ -69,13 +69,13 @@ String keyword = request.getParameter("keyword");
 	<div id="main-wrapper">
 
 		<!-- Navbar -->
-		<jsp:include page="AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="./layouts/AdminNavbar.jsp"></jsp:include>
 
 		<!-- Header -->
-		<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<jsp:include page="./layouts/AdminHeader.jsp"></jsp:include>
 
 		<!-- Sidebar -->
-		<jsp:include page="AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="./layouts/AdminSidebar.jsp"></jsp:include>
 
 		<div class="content-body">
 			<div class="container mt-5">
@@ -95,6 +95,7 @@ String keyword = request.getParameter("keyword");
 									<input type="text" name="name" class="form-control"
 										placeholder="Search by Name or Scientific Name"
 										autocomplete="off">
+
 									<button class="btn btn-primary" type="submit">
 										<i class="fas fa-search fa-sm"></i>
 									</button>
@@ -127,7 +128,8 @@ String keyword = request.getParameter("keyword");
 								<td><%=ing.getScientificName()%></td>
 								<td>
 									<div class="d-flex justify-content-center gap-2">
-										<a href="viewingredient?id=<%=ing.getIngredientId()%>"
+										<a
+											href="viewingredient?id=<%=ing.getIngredientId()%>&search_term=<%=request.getParameter("name")%>"
 											class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
 											<i class="fas fa-eye"></i> View
 										</a> <a href="updateingredient?id=<%=ing.getIngredientId()%>"
@@ -158,7 +160,7 @@ String keyword = request.getParameter("keyword");
 		</div>
 
 		<!-- Footer -->
-		<jsp:include page="Footer.jsp"></jsp:include>
+		<jsp:include page="./includes/Footer.jsp"></jsp:include>
 	</div>
 
 	<!-- Bootstrap Bundle -->
@@ -166,7 +168,7 @@ String keyword = request.getParameter("keyword");
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Scripts Include -->
-	<jsp:include page="Scripts.jsp"></jsp:include>
+	<jsp:include page="./includes/Scripts.jsp"></jsp:include>
 
 </body>
 </html>

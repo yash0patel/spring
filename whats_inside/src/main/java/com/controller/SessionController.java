@@ -1,5 +1,5 @@
 package com.controller;
-
+import com.util.ViewPaths;
 import java.nio.file.Files;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,40 +20,35 @@ import com.bean.UserBean;
 import com.dao.UserDao;
 
 import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SessionController {
 
-    @Autowired
+	@Autowired
 	JavaMailSender mailSender;
 	@Autowired
 	UserDao userDao;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
-
 	@GetMapping("signup")
-	public String signup()
-	{
-		return "Signup";
+	public String signup() {
+		return ViewPaths.SIGNUP;
 	}
-	
-	@GetMapping(value = {"login","/"})
-	public String login()
-	{
-		return "Login";
+
+	@GetMapping(value = { "login", "/" })
+	public String login() {
+		return ViewPaths.LOGIN;
 	}
-	
+
 	@PostMapping("saveuser")
-	public String saveUser(@Validated UserBean user,BindingResult result, Model model)
-	{
-		if(result.hasErrors())
-		{
-			model.addAttribute("result",result);
-			return "Signup";
-		}
-		else
-		{
+	public String saveUser(@Validated UserBean user, BindingResult result, Model model,HttpSession session,HttpServletRequest request) {
+		if (result.hasErrors()) {
+			model.addAttribute("result", result);
+			return ViewPaths.SIGNUP;
+		} else {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			userDao.adduser(user);
 //			SimpleMailMessage message = new SimpleMailMessage();
@@ -64,140 +59,160 @@ public class SessionController {
 //			mailSender.send(message);
 
 			try {
-	            // Load HTML template from resources
-	            Resource resource = new ClassPathResource("templates/welcome-mail-temp.html");
-	            String htmlContent = new String(Files.readAllBytes(resource.getFile().toPath()));
+				// Load HTML template from resources
+				Resource resource = new ClassPathResource("templates/welcome-mail-temp.html");
+				String htmlContent = new String(Files.readAllBytes(resource.getFile().toPath()));
 
-	            // Prepare the email
-	            MimeMessage message = mailSender.createMimeMessage();
-	            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+				// Prepare the email
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-	            helper.setFrom("yashpatel573a@gmail.com");
-	            helper.setTo(user.getEmail());
-	            helper.setSubject("Welcome to What's inside!!!");
-	            helper.setText(htmlContent, true); // true means HTML
+				helper.setFrom("yashpatel573a@gmail.com");
+				helper.setTo(user.getEmail());
+				helper.setSubject("Welcome to What's inside!!!");
+				helper.setText(htmlContent, true); // true means HTML
 
-	            // Send the email
-	            mailSender.send(message);
+				// Send the email
+				mailSender.send(message);
 
-	        } catch (Exception e) {
-	            e.printStackTrace(); // handle error properly in production
-	        }
+			} catch (Exception e) {
+				e.printStackTrace(); // handle error properly in production
+			}
 			
-			return "Login";
+			session.invalidate();
+			
+
+			HttpSession newSession = request.getSession(true);
+	        newSession.setAttribute("user", user);
+
+	        return "redirect:/dashboard";
 		}
 	}
-	
+
 	@PostMapping("/login")
-	public String authenticate(String email,String password,Model model)
-	{
-		boolean isAuthenticated = userDao.authenticate(email, password);
-		if(!isAuthenticated)
-		{
-			model.addAttribute("error","invalide login detail");
-			return "Login";
-		}
-		if(userDao.getRoleByEmail(email).equals("users"))
-		{
-			return"redirect:/home";			
-		}
-		else if(userDao.getRoleByEmail(email).equals("admin"))
-		{
-			return"redirect:/admindashboard";			
-		}
-		
-		return"redirect:/listingredients";		
-		
+	public String authenticate(String email,String password,Model model,HttpServletRequest request) {
+
+	    boolean isAuthenticated = userDao.authenticate(email, password);
+
+	    if (!isAuthenticated) {
+	        model.addAttribute("error", "Invalid login details");
+	        return ViewPaths.LOGIN;
+	    }
+
+	    UserBean user = userDao.getUserByEmail(email);
+	    String role = user.getRole();
+
+	    HttpSession session = request.getSession(true);
+	    session.setAttribute("user", user);
+	    session.setAttribute("role", role);
+	    
+	    if ("users".equalsIgnoreCase(role)) {
+	        return "redirect:/home";
+	    } else if ("admin".equalsIgnoreCase(role)) {
+	        return "redirect:/admindashboard";
+	    }
+	    return "redirect:/listingredients";
 	}
-	
+
+
 	@GetMapping("forgotpassword")
-	public String forgotPassword()
-	{
-		return "ForgotPassword";
+	public String forgotPassword() {
+		return ViewPaths.FORGOT_PASSWORD;
 	}
-	
+
 	@PostMapping("forgotpassword")
-	public String sendOTP(String email,Model model)
-	{
-		if(email == null || !userDao.isEmailRegistered(email))
-		{
+	public String sendOTP(String email, Model model) {
+		if (email == null || !userDao.isEmailRegistered(email)) {
 			model.addAttribute("error", "Insert a correct or valid email");
-			return "ForgotPassword";			
+			return ViewPaths.FORGOT_PASSWORD;
 		}
 		try {
-            // Load HTML template from resources
-            Resource resource = new ClassPathResource("templates/sendOtpEmail.html");
-            String htmlContent = new String(Files.readAllBytes(resource.getFile().toPath()));
+			// Load HTML template from resources
+			Resource resource = new ClassPathResource("templates/sendOtpEmail.html");
+			String htmlContent = new String(Files.readAllBytes(resource.getFile().toPath()));
 
-            // Prepare the email
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			// Prepare the email
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-            String otp = userDao.generateOtp();
-            if(!userDao.setOtp(email,otp))
-            {
-            	model.addAttribute("error","Server error, please try again");
-            	return "ForgotPassword";
-            }
-            
-            htmlContent = htmlContent.replace("${otp}", otp);
-            helper.setFrom("yashpatel573a@gmail.com");
-            helper.setTo(email);
-            helper.setSubject("Your OTP Code");
-            helper.setText(htmlContent, true); // true means HTML
-
-            // Send the email
-            mailSender.send(message);
-
-        } catch (Exception e) {
-            e.printStackTrace(); // handle error properly in production
-        }
-		
-		model.addAttribute("email",email);
-		
-		return "OtpForm";
-	}
-	
-	@PostMapping("verifyOtp")
-	public String verifyOtp(String email,String otp,String newPassword,Model model)
-	{
-		if(userDao.verifyOtp(email, otp))
-		{
-			model.addAttribute("msg","OTP verified successfully!");
-			model.addAttribute("isVerified",true);
-			
-			if(newPassword.length() == 0 || newPassword == null)
-			{
-				model.addAttribute("msg","Enter Valide password!");
-				model.addAttribute("email",email);
-				model.addAttribute("otp",otp);
-				return "OtpForm";
+			String otp = userDao.generateOtp();
+			if (!userDao.setOtp(email, otp)) {
+				model.addAttribute("error", "Server error, please try again");
+				return ViewPaths.FORGOT_PASSWORD;
 			}
-			
-			if(!userDao.changeUserPassword(email, newPassword))
-			{
+
+			htmlContent = htmlContent.replace("${otp}", otp);
+			helper.setFrom("yashpatel573a@gmail.com");
+			helper.setTo(email);
+			helper.setSubject("Your OTP Code");
+			helper.setText(htmlContent, true); // true means HTML
+
+			// Send the email
+			mailSender.send(message);
+
+		} catch (Exception e) {
+			e.printStackTrace(); // handle error properly in production
+		}
+
+		model.addAttribute("email", email);
+
+		return ViewPaths.OTP_FORM;
+	}
+
+	@PostMapping("verifyOtp")
+	public String verifyOtp(String email, String otp, String newPassword, Model model) {
+		if (userDao.verifyOtp(email, otp)) {
+			model.addAttribute("msg", "OTP verified successfully!");
+			model.addAttribute("isVerified", true);
+
+			if (newPassword.length() == 0 || newPassword == null) {
+				model.addAttribute("msg", "Enter Valide password!");
+				model.addAttribute("email", email);
+				model.addAttribute("otp", otp);
+				return ViewPaths.OTP_FORM;
+			}
+
+			if (!userDao.changeUserPassword(email, newPassword)) {
 				model.addAttribute("error", "Failed to update password. Please try again later.");
 			}
-			
-			model.addAttribute("email",email);
-			return "Login";	
-		}
-		else {
-			model.addAttribute("isVerified",false);
+
+			model.addAttribute("email", email);
+			return ViewPaths.LOGIN;
+		} else {
+			model.addAttribute("isVerified", false);
 			if (userDao.isOtpExpired(email)) {
-			    model.addAttribute("msg", "OTP has expired. Please request a new one.");				
+				model.addAttribute("msg", "OTP has expired. Please request a new one.");
 			} else {
-			    model.addAttribute("msg", "Invalid OTP. Please try again.");
+				model.addAttribute("msg", "Invalid OTP. Please try again.");
 			}
-	        model.addAttribute("email", email);
-	        model.addAttribute("newPassword",newPassword);
-	        return "OtpForm";
-	    }
+			model.addAttribute("email", email);
+			model.addAttribute("newPassword", newPassword);
+			return ViewPaths.OTP_FORM;
+		}
+	}
+
+	@PostMapping("resendOtp")
+	public String resendOtp(String email, Model model) {
+		return sendOTP(email, model);
 	}
 	
-	@PostMapping("resendOtp")
-	public String resendOtp(String email,Model model)
-	{
-		return sendOTP(email, model);
+	@GetMapping("logout")
+	public String logout(HttpSession session, Model model) {
+	    UserBean user = (UserBean) session.getAttribute("user");
+	    String name = (user != null) ? user.getFirstName() : "User";
+
+	    model.addAttribute("userName", name);
+	    return ViewPaths.LOGOUT;
+	}
+	
+	@PostMapping("logout")
+	public String doLogout(HttpSession session) {
+	    session.invalidate();
+	    return "redirect:/login";
+	}
+	
+	@GetMapping("profile")
+	public String profile() {
+		return ViewPaths.Profile;
 	}
 }

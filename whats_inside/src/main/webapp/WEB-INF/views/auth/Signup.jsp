@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Signup - What's Inside</title>
-<jsp:include page="HeaderLink.jsp"></jsp:include>
+<jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
 </head>
 <body class="h-100">
 	<div id="main-wrapper">
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -21,7 +21,7 @@
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -29,7 +29,7 @@
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->
@@ -109,7 +109,7 @@
 		<!--**********************************
             Footer start
         ***********************************-->
-		<jsp:include page="Footer.jsp"></jsp:include>
+		<jsp:include page="../includes/Footer.jsp"></jsp:include>
 		<!--**********************************
             Footer end
         ***********************************-->
@@ -117,7 +117,7 @@
 	<!--**********************************
         Scripts
     ***********************************-->
-	<jsp:include page="Scripts.jsp"></jsp:include>
+	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 </body>
 
 </html>

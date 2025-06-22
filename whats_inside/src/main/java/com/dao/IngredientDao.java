@@ -56,10 +56,4 @@ public class IngredientDao {
             "%" + name + "%", "%" + name + "%"
         );
     }
-	
-	public void logEmptySearch(String searchTerm) {
-	    String sql = "INSERT INTO search_logs_empty (search_term) VALUES (?)";
-	    stmt.update(sql, searchTerm);
-	}
-
 }
