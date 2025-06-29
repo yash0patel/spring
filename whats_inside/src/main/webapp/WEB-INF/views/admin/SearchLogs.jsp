@@ -113,8 +113,15 @@ List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list
 								<td><%=log.getSearched_at()%></td>
 								<td><%=log.getFirstName()%></td>
 								<td><%=log.getEmail()%></td>
-								<td><a href="viewingredient?id=<%=log.getSearch_term()%>"
-									class="btn btn-sm btn-view"> fetch </a></td>
+								<td>
+									<div class="d-flex justify-content-center gap-2">
+										<a href="viewingredient?id=<%=log.getSearch_term()%>"
+									class="btn btn-sm btn-view"> fetch </a> <a href="deletesearchlog?id=<%= log.getId() %>"
+											class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1">
+											<i class="fas fa-trash-alt"></i> Delete
+										</a>
+									</div>	
+								</td>
 							</tr>
 							<%
 							}

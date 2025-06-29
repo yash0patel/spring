@@ -53,8 +53,8 @@
 					</div>
 
 					<div class="col-md-12">
-						<label for="usage" class="form-label">Common Usage</label>
-						<textarea class="form-control" name="usage" id="usage" rows="2"></textarea>
+						<label for="commonUsage" class="form-label">Common Usage</label>
+						<textarea class="form-control" name="commonUsage" id="commonUsage" rows="2"></textarea>
 					</div>
 
 					<div class="col-md-12">

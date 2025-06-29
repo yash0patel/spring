@@ -56,4 +56,23 @@ public class IngredientDao {
             "%" + name + "%", "%" + name + "%"
         );
     }
+	
+	public void deleteIngredientById(Integer id) {
+	    String sql = "DELETE FROM ingredients WHERE ingredientId = ?";
+	    stmt.update(sql, id);
+	}
+	
+	public void updateIngredient(IngredientBean ingredientBean) {
+	    String sql = "UPDATE ingredients SET name = ?, scientificName = ?, commonUsage = ?, avoidBy = ?, fda = ?, fssai = ?, efsa = ? WHERE ingredientId = ?";
+	    stmt.update(sql,
+	        ingredientBean.getName(),
+	        ingredientBean.getScientificName(),
+	        ingredientBean.getCommonUsage(),
+	        ingredientBean.getAvoidBy(),
+	        ingredientBean.getFda(),
+	        ingredientBean.getFssai(),
+	        ingredientBean.getEfsa(),
+	        ingredientBean.getIngredientId()
+	    );
+	}
 }

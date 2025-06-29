@@ -11,8 +11,10 @@ public class ViewPaths {
 
     // Admin views
     public static final String ADMIN_DASHBOARD = "admin/AdminDashboard";
+    
     public static final String ADMIN_LIST_USER = "admin/ListUser";
     public static final String ADMIN_NEW_INGREDIENT = "admin/NewIngredient";
+    public static final String ADMIN_UPDATE_INGREDIENT = "admin/UpdateIngredient";
     public static final String ADMIN_SEARCH_LOG_LIST = "admin/SearchLogs";
     
     // Includes (shared components)

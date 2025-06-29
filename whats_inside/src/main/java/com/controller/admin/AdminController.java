@@ -28,4 +28,11 @@ public class AdminController {
 		model.addAttribute("list", list);
 		return ViewPaths.ADMIN_SEARCH_LOG_LIST;
 	}
+	
+	@GetMapping("deletesearchlog")
+	public String deleteSearchLog(Integer id)
+	{
+		searchLogDao.deleteSearchLogById(id);
+		return "redirect:/searchlog";
+	}
 }

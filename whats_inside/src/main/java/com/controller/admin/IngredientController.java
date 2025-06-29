@@ -73,8 +73,35 @@ public class IngredientController {
 	       model.addAttribute("msg", "No ingredients found.");
 	       searchLogDao.logEmptySearch(name);
     	}
-		   
+	    model.addAttribute("search_term", name);  
 		model.addAttribute("list", list);
 		return ViewPaths.SEARCH_INGREDIENT;
 	}
+	
+	@GetMapping("deleteingredient")
+	public String deleteIngredient(Integer id)
+	{
+		ingredientDao.deleteIngredientById(id);
+		return "redirect:/listingredients";
+	}
+	
+	@GetMapping("updateingredient")
+	public String updateIngredient(Integer id, String search_term, Model model)
+	{
+		model.addAttribute("ingredient", ingredientDao.getIngredientById(id));
+		model.addAttribute("search_term", search_term);
+		return ViewPaths.ADMIN_UPDATE_INGREDIENT;
+	}
+	
+	@PostMapping("updateingredient")
+	public String saveUpdate(IngredientBean ingredientBean,String search_term) {
+	    ingredientDao.updateIngredient(ingredientBean);
+
+	    if (search_term == null || search_term.trim().isEmpty()) {
+	        return "redirect:/viewingredient?id=" + ingredientBean.getIngredientId();
+	    }
+
+	    return "redirect:/viewingredient?id=" + ingredientBean.getIngredientId() + "&search_term=" + search_term;
+	}
+
 }

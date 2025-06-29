@@ -23,4 +23,9 @@ public class SearchLogDao {
 		String query = "select s.id, s.search_term, s.searched_at, u.firstName, u.email from search_logs_empty s join users u on s.userId = u.userId";
 	    return stmt.query(query, new BeanPropertyRowMapper<>(SearchLogBean.class));
 	}
+	
+	public void deleteSearchLogById(Integer id) {
+	    String sql = "DELETE FROM search_logs_empty WHERE id = ?";
+	    stmt.update(sql, id);
+	}
 }

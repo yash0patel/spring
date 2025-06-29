@@ -25,19 +25,6 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 	color: #ffffff; /* lighter white for contrast */
 }
 
-.btn-view {
-	color: #0d6efd;
-	border: 1px solid #0d6efd;
-	transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s
-		ease;
-}
-
-.btn-view:hover {
-	background-color: #0d6efd;
-	color: white;
-	transform: scale(1.05);
-}
-
 .table-wrapper {
 	max-width: 900px;
 	margin: auto;
@@ -111,8 +98,22 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 								<td><%=ing.getIngredientId()%></td>
 								<td><%=ing.getName()%></td>
 								<td><%=ing.getScientificName()%></td>
-								<td><a href="viewingredient?id=<%=ing.getIngredientId()%>"
-									class="btn btn-sm btn-view"> View </a></td>
+								<td>
+									<div class="d-flex justify-content-center gap-2">
+										<a
+											href="viewingredient?id=<%=ing.getIngredientId()%>"
+											class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">View
+										</a> <a href="updateingredient?id=<%=ing.getIngredientId()%>"
+											class="btn btn-sm btn-outline-success d-flex align-items-center gap-1">
+											<i class="fas fa-pen"></i> Update
+										</a> 
+										<a href="deleteingredient?id=<%=ing.getIngredientId()%>"
+											class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
+											onclick="return confirm('Are you sure you want to delete this ingredient?');">
+											<i class="fas fa-trash-alt"></i> Delete
+										</a>
+									</div>
+								</td>
 							</tr>
 							<%
 							}
