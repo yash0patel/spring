@@ -81,15 +81,33 @@ List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list
 
 		<div class="content-body">
 			<div class="container mt-5">
-
 				<!-- Header Section -->
 				<div
 					class="d-flex justify-content-between align-items-center mb-4 table-wrapper">
 					<div class="page-title">Search Log List</div>
 				</div>
-
+				
 				<!-- Table Section -->
 				<div class="table-responsive table-wrapper">
+					<% String errorMsg = (String) request.getAttribute("error"); %>
+					<% if (errorMsg != null && !errorMsg.trim().isEmpty()) { %>
+					    <div class="alert alert-danger alert-dismissible alert-alt fade show">
+					        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+					            <span><i class="mdi mdi-close"></i></span>
+					        </button>
+					        <strong>Error!</strong> <%= errorMsg %>
+					    </div>
+					<% } %>
+					<% String successMsg = (String) request.getAttribute("successMsg"); %>
+					<% if (successMsg != null && !successMsg.trim().isEmpty()) { %>
+					    <div class="alert alert-success alert-dismissible alert-alt fade show">
+					        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+					            <span><i class="mdi mdi-close"></i></span>
+					        </button>
+					        <strong>Success!</strong> <%= successMsg %>
+					    </div>
+					<% } %>
+				
 					<table
 						class="table table-hover table-bordered bg-white shadow rounded">
 						<thead class="table-dark text-center">
@@ -115,7 +133,7 @@ List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list
 								<td><%=log.getEmail()%></td>
 								<td>
 									<div class="d-flex justify-content-center gap-2">
-										<a href="viewingredient?id=<%=log.getSearch_term()%>"
+										<a href="fetchdata?name=<%=log.getSearch_term()%>"
 									class="btn btn-sm btn-view"> fetch </a> <a href="deletesearchlog?id=<%= log.getId() %>"
 											class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1">
 											<i class="fas fa-trash-alt"></i> Delete

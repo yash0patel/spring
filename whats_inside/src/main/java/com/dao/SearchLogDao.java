@@ -28,4 +28,9 @@ public class SearchLogDao {
 	    String sql = "DELETE FROM search_logs_empty WHERE id = ?";
 	    stmt.update(sql, id);
 	}
+
+    public void deleteLogsBySearchTerm(String name) {
+        String sql = "DELETE FROM search_logs_empty WHERE search_term = ?";
+        stmt.update(sql, name);
+    }
 }
