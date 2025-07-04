@@ -37,4 +37,5 @@ public class ViewPaths {
     public static final String SEARCH_INGREDIENT = "SearchIngredient";
     public static final String VIEW_INGREDIENT = "ViewIngredient";
     public static final String Profile = "Profile";
+    public static final String PAYNOW = "PayNow";
 }

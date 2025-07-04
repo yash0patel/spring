@@ -20,4 +20,6 @@ public class UserController {
 	{
 		return ViewPaths.HOME;
 	}
+	
+	
 }
