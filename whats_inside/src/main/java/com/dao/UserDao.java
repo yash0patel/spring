@@ -118,5 +118,10 @@ public class UserDao {
 		}
 		return "";
 	}
+	
+	public int getTotalUserCount() {
+	    String sql = "SELECT COUNT(*) FROM users";
+	    return stmt.queryForObject(sql, Integer.class);
+	}
 
 }

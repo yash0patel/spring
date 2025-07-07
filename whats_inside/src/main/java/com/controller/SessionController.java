@@ -1,4 +1,5 @@
 package com.controller;
+import com.service.SmsService;
 import com.util.ViewPaths;
 import java.nio.file.Files;
 
@@ -26,6 +27,8 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class SessionController {
 
+    private final SmsService smsService;
+
 	@Autowired
 	JavaMailSender mailSender;
 	@Autowired
@@ -33,6 +36,12 @@ public class SessionController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
+
+    SessionController(SmsService smsService) {
+        this.smsService = smsService;
+    }
+	
+	
 	@GetMapping("signup")
 	public String signup() {
 		return ViewPaths.SIGNUP;
@@ -62,7 +71,7 @@ public class SessionController {
 				// Load HTML template from resources
 				Resource resource = new ClassPathResource("templates/welcome-mail-temp.html");
 				String htmlContent = new String(Files.readAllBytes(resource.getFile().toPath()));
-
+				
 				// Prepare the email
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -74,18 +83,23 @@ public class SessionController {
 
 				// Send the email
 				mailSender.send(message);
-
 			} catch (Exception e) {
 				e.printStackTrace(); // handle error properly in production
+			}
+			try {
+				smsService.sendWelcomeSms(user.getMobileNo());					
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
 			session.invalidate();
 			
 
 			HttpSession newSession = request.getSession(true);
+			user.setPassword(null);
 	        newSession.setAttribute("user", user);
 
-	        return "redirect:/dashboard";
+	        return "redirect:/home";
 		}
 	}
 
@@ -103,15 +117,16 @@ public class SessionController {
 	    String role = user.getRole();
 
 	    HttpSession session = request.getSession(true);
+	    user.setPassword(null);
 	    session.setAttribute("user", user);
 	    session.setAttribute("role", role);
 	    
 	    if ("users".equalsIgnoreCase(role)) {
-	        return "redirect:/home";
+	        return "redirect:/userdashboard";
 	    } else if ("admin".equalsIgnoreCase(role)) {
 	        return "redirect:/admindashboard";
 	    }
-	    return "redirect:/listingredients";
+	    return "redirect:/home";
 	}
 
 

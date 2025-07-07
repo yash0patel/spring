@@ -11,6 +11,7 @@ IngredientBean ingredient = (IngredientBean) request.getAttribute("ingredient");
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+	<jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
 <style>
 body {
 	background-color: #f8f9fa;
@@ -116,7 +117,17 @@ h2.title {
 </style>
 </head>
 <body>
+<jsp:include page="../includes/Preloader.jsp"></jsp:include>
 
+			<!-- Navbar -->
+		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+
+		<!-- Header -->
+		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+
+		<!-- Sidebar -->
+		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+<div class="content-body">
 	<div class="container-detail">
 		<h2 class="title">Ingredient Detail</h2>
 
@@ -189,8 +200,8 @@ h2.title {
 			%>
 		</div>
 	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+			<jsp:include page="../includes/Footer.jsp"></jsp:include>
+	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 </body>
 </html>

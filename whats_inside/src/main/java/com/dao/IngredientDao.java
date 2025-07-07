@@ -75,4 +75,9 @@ public class IngredientDao {
 	        ingredientBean.getIngredientId()
 	    );
 	}
+	
+	public int getTotalIngredient() {
+	    String sql = "SELECT COUNT(*) FROM ingredients";
+	    return stmt.queryForObject(sql, Integer.class);
+	}
 }

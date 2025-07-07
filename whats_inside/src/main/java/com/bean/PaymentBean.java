@@ -5,6 +5,14 @@ public class PaymentBean {
 	private String cardNumber;
 	private String cvv;
 	private String expDate;
+	private String email;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getCardNumber() {
 		return cardNumber;
 	}

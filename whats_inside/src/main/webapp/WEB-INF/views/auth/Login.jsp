@@ -8,46 +8,63 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Login - what's inside</title>
 <jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
+<style>
+.tagline {
+	font-size: 1.2rem;
+	color: #666;
+	margin-top: 10px;
+	transition: opacity 0.5s ease;
+}
 
+.content-body {
+	margin-left: 0 !important;
+}
+
+.nav-header {
+	background-color: #2e3154; /* example */
+}
+
+.footerp{
+margin-left: 0 !important;
+}
+</style>
 </head>
 
-<body class="h-100">
+<body>
+
+	<jsp:include page="../includes/Preloader.jsp"></jsp:include>
+
 	<div id="main-wrapper">
-		<!--**********************************
-            Nav header start
-        ***********************************-->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
-		<!--**********************************
-            Nav header end
-        ***********************************-->
 
-		<!--**********************************
-            Header start
-        ***********************************-->
+		<div class="nav-header">
+			<a href="index.html" class="brand-logo"> <img class="logo-abbr"
+				src="./images/logo.png" alt=""> <img class="logo-compact"
+				src="./images/logo-text.png" alt=""> <img class="brand-title"
+				src="./images/logo-text.png" alt="">
+			</a>
+		</div>
+
 		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
-		<!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
 
-		<!--**********************************
-            Sidebar start
-        ***********************************-->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
-		<!--**********************************
-            Sidebar end
-        ***********************************-->
 
 		<div class="content-body">
-			<div class="authincation h-100">
-				<div class="container-fluid h-100">
-					<div class="row justify-content-center h-100 align-items-center">
-						<div class="col-md-6">
-							<div class="authincation-content">
-								<div class="row no-gutters">
-									<div class="col-xl-12">
-										<div class="auth-form">
+			<div class="container-fluid">
+				<div class="row page-titles mx-0">
+					<div class="col-sm-12 p-md-0">
+						<div class="welcome-text text-center">
+							<h2 class="text-primary">Welcome to What's Inside</h2>
+							<p class="mb-0 tagline" id="tagline">Discover and manage
+								ingredients the smart way.</p>
+						</div>
+						
+						<div class="row no-gutters mt-5">
+									<div class="col-xl-12 px-5">
+										<div class="auth-form" style="border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); background-color: #fff;">
+										<div class="px-3">
 											<h4 class="text-center mb-4">Sign in your account</h4>
+											<div class="text-center mb-4">
 											<samp class="text-danger">${error}</samp>
+											</div>
 											<form action="login" method="post">
 												<div class="form-group">
 													<label><strong>Email</strong></label> <input type="email"
@@ -87,28 +104,51 @@
 														up</a>
 												</p>
 											</div>
-										</div>
+										</div></div>
 									</div>
 								</div>
-							</div>
-						</div>
+						<!-- Spacer -->
+						<div style="height: 80px;"></div>
+
+
+
+
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--**********************************
-            Footer start
-        ***********************************-->
-		<jsp:include page="../includes/Footer.jsp"></jsp:include>
-		<!--**********************************
-            Footer end
-        ***********************************-->
-	</div>
 
-	<!--**********************************
-        Scripts
-    ***********************************-->
+	</div>
+		
+	<jsp:include page="../includes/Footer.jsp"></jsp:include>
 	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
+
+	<!-- Rotating Tagline Script -->
+	<script>
+	    const taglines = [
+	        "Less hassle, more discovery.",
+	        "Smarter for discovering ingredients.",
+	        "All your ingredient details, just a click away.",
+	        "Explore your ingredients with ease and efficiency.",
+	        "Organize and track your ingredients effortlessly.",
+	        "Your ingredient vault, simplified.",
+	        "Fast. Accurate. Ingredient management made easy.",
+	        "Helping you find what's inside — instantly."
+	    ];
+
+	    let current = 0;
+	    const taglineEl = document.getElementById('tagline');
+
+	    setInterval(() => {
+	        current = (current + 1) % taglines.length;
+	        taglineEl.style.opacity = 0;
+	        setTimeout(() => {
+	            taglineEl.textContent = taglines[current];
+	            taglineEl.style.opacity = 1;
+	        }, 300);
+	    }, 3500); 
+	</script>
+	
 
 </body>
 

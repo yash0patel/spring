@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.bean.UserBean" %>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -64,14 +65,6 @@
 							<p class="mb-0">Your business dashboard template</p>
 						</div>
 					</div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Layout</a></li>
-							<li class="breadcrumb-item active"><a
-								href="javascript:void(0)">Blank</a></li>
-						</ol>
-					</div>
 				</div>
 
 				<div class="row">
@@ -83,7 +76,7 @@
 								</div>
 								<div class="stat-content d-inline-block">
 									<div class="stat-text">Profit</div>
-									<div class="stat-digit">1,012</div>
+									<div class="stat-digit">0${profit}</div>
 								</div>
 							</div>
 						</div>
@@ -95,8 +88,8 @@
 									<i class="ti-user text-primary border-primary"></i>
 								</div>
 								<div class="stat-content d-inline-block">
-									<div class="stat-text">Customer</div>
-									<div class="stat-digit">961</div>
+									<div class="stat-text">Users</div>
+									<div class="stat-digit">${userCount}</div>
 								</div>
 							</div>
 						</div>
@@ -108,8 +101,8 @@
 									<i class="ti-layout-grid2 text-pink border-pink"></i>
 								</div>
 								<div class="stat-content d-inline-block">
-									<div class="stat-text">Projects</div>
-									<div class="stat-digit">770</div>
+									<div class="stat-text">Ingredients</div>
+									<div class="stat-digit">${ingredientCount}</div>
 								</div>
 							</div>
 						</div>
@@ -118,11 +111,11 @@
 						<div class="card">
 							<div class="stat-widget-one card-body">
 								<div class="stat-icon d-inline-block">
-									<i class="ti-link text-danger border-danger"></i>
+									<i class="ti-search text-danger border-danger"></i>
 								</div>
 								<div class="stat-content d-inline-block">
-									<div class="stat-text">Referral</div>
-									<div class="stat-digit">2,781</div>
+									<div class="stat-text">Search Logs</div>
+									<div class="stat-digit">${searchLogCount}</div>
 								</div>
 							</div>
 						</div>
@@ -132,30 +125,44 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">All Exam Result</h4>
+								<h4 class="card-title">User List</h4>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table student-data-table m-t-20">
-										<thead>
-											<tr>
-												<th>Subject</th>
-												<th>Grade Point</th>
-												<th>Percent Form</th>
-												<th>Percent Upto</th>
-												<th>Date</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Class Test</td>
-												<td>Mathmatics</td>
-												<td>4.00</td>
-												<td>95.00</td>
-												<td>100</td>
-												<td>20/04/2017</td>
-											</tr>
-										</tbody>
+										<thead class="table-dark">
+								            <tr>
+								            	<th>User Id</th>
+								                <th>First Name</th>
+								                <th>Last Name</th>
+								                <th>Email</th>
+								                <th>Gender</th>
+								            </tr>
+								        </thead>
+								        <tbody>
+									        <%
+									            List<UserBean> userList = (List<UserBean>) request.getAttribute("userList");
+									            if (userList != null && !userList.isEmpty()) {
+									                for (UserBean user : userList) {
+									        %>
+									            <tr>
+									            	<td><%= user.getUserID() %></td>
+									                <td><%= user.getFirstName() %></td>
+									                <td><%= user.getLastName() %></td>
+									                <td><%= user.getEmail() %></td>
+									                <td><%= user.getGender() %></td>
+									            </tr>
+									        <%
+									                }
+									            } else {
+									        %>
+									            <tr>
+									                <td colspan="4" class="text-center text-muted">No users found.</td>
+									            </tr>
+									        <%
+									            }
+									        %>
+								        </tbody>
 									</table>
 								</div>
 							</div>

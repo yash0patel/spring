@@ -7,19 +7,30 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Login - what's inside</title>
-<jsp:include page="./includes/HeaderLink.jsp"></jsp:include>
+<jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
 <style type="text/css">
-	.btn-gradient-primary {
+.btn-gradient-primary {
 	background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-	color: white;
+	color: #ffffff;
 	border: none;
-	transition: 0.3s ease-in-out;
+	border-radius: 6px;
+	padding: 0.6em 1.4em;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btn-gradient-primary:hover {
-	background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.btn-gradient-primary:hover {;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+	transform: scale(1.03);
 }
+
+.btn-gradient-primary:focus {
+	outline: 3px solid rgba(101, 175, 255, 0.6);
+	outline-offset: 2px;
+}
+
 	
 </style>
 </head>
@@ -29,7 +40,7 @@
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="./layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -37,7 +48,7 @@
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="./layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -45,7 +56,7 @@
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="./layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->
@@ -63,7 +74,7 @@
 						<div class="card-body px-4 py-3">
 							<form action="processPayment" method="post">
 								<input type="hidden" name="amount" value="500" />
-
+								<input type="hidden" name="email" value="${email}" />
 								<div class="form-group mb-3">
 									<label for="cardNumber" class="fw-semibold">Card Number</label>
 									<input type="text" maxlength="16" class="form-control" id="cardNumber" name="cardNumber" placeholder="Enter 16-digit card number" required>
@@ -103,7 +114,7 @@
 		<!--**********************************
             Footer start
         ***********************************-->
-		<jsp:include page="./includes/Footer.jsp"></jsp:include>
+		<jsp:include page="../includes/Footer.jsp"></jsp:include>
 		<!--**********************************
             Footer end
         ***********************************-->
@@ -112,7 +123,7 @@
 	<!--**********************************
         Scripts
     ***********************************-->
-	<jsp:include page="./includes/Scripts.jsp"></jsp:include>
+	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 
 </body>
 

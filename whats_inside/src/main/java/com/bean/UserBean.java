@@ -13,7 +13,22 @@ public class UserBean {
 	private String password;
 	@NotBlank(message = "please Enter Gender")
 	private String gender;
+	private long userID;
 	
+	public long getUserID() {
+		return userID;
+	}
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+	private String mobileNo;
+	
+	public String getMobileNo() {
+		return mobileNo;
+	}
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
 	private String role;
 	
 	public String getRole() {

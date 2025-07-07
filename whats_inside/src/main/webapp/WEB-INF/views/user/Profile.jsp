@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User Profile</title>
-    <jsp:include page="./includes/HeaderLink.jsp" />
+    <jsp:include page="../includes/HeaderLink.jsp" />
 
     <!-- Bootstrap Icons (optional) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -61,9 +61,9 @@
 <body class="bg-light">
 
 <div id="main-wrapper">
-    <jsp:include page="./layouts/AdminNavbar.jsp" />
-    <jsp:include page="./layouts/AdminHeader.jsp" />
-    <jsp:include page="./layouts/AdminSidebar.jsp" />
+    <jsp:include page="../layouts/AdminNavbar.jsp" />
+    <jsp:include page="../layouts/AdminHeader.jsp" />
+    <jsp:include page="../layouts/AdminSidebar.jsp" />
 
     <div class="content-body">
         <div class="container">
@@ -105,9 +105,9 @@
         </div>
     </div>
 
-    <jsp:include page="./includes/Footer.jsp" />
+    <jsp:include page="../includes/Footer.jsp" />
 </div>
 
-<jsp:include page="./includes/Scripts.jsp" />
+<jsp:include page="../includes/Scripts.jsp" />
 </body>
 </html>

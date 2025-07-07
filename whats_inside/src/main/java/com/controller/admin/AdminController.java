@@ -14,6 +14,7 @@ import com.bean.IngredientBean;
 import com.bean.SearchLogBean;
 import com.dao.IngredientDao;
 import com.dao.SearchLogDao;
+import com.dao.UserDao;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.util.ViewPaths;
@@ -31,10 +32,17 @@ public class AdminController {
 //    private WebClient huggingFaceClient;
 	
 	@Autowired
+	UserDao userDao;
+	
+	@Autowired
 	private WebClient openRouterClient;
 	
 	@GetMapping("admindashboard")
-	public String adminDashboard() {
+	public String adminDashboard(Model model) {
+		model.addAttribute("searchLogCount",searchLogDao.getTotalSearchLogCount());
+		model.addAttribute("ingredientCount",ingredientDao.getTotalIngredient());
+		model.addAttribute("userCount",userDao.getTotalUserCount());
+		model.addAttribute("userList",userDao.getAllUsers());
 		return ViewPaths.ADMIN_DASHBOARD;
 	}
 

@@ -11,7 +11,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<jsp:include page="./includes/HeaderLink.jsp"></jsp:include>
+<jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
 <style>
 .btn-add {
 	background-color: #198754;
@@ -45,7 +45,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="./layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -53,7 +53,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="./layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -61,7 +61,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="./layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->
@@ -134,7 +134,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Footer start
         ***********************************-->
-			<jsp:include page="./includes/Footer.jsp"></jsp:include>
+			<jsp:include page="../includes/Footer.jsp"></jsp:include>
 			<!--**********************************
             Footer end
         ***********************************-->
@@ -144,7 +144,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 	<!--**********************************
         Scripts
     ***********************************-->
-	<jsp:include page="./includes/Scripts.jsp"></jsp:include>
+	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 </body>
 
 </html>

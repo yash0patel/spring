@@ -33,4 +33,9 @@ public class SearchLogDao {
         String sql = "DELETE FROM search_logs_empty WHERE search_term = ?";
         stmt.update(sql, name);
     }
+    
+	public int getTotalSearchLogCount() {
+	    String sql = "SELECT COUNT(*) FROM search_logs_empty";
+	    return stmt.queryForObject(sql, Integer.class);
+	}
 }

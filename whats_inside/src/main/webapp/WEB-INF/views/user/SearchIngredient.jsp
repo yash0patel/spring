@@ -20,7 +20,7 @@ String keyword = request.getParameter("keyword");
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!-- Custom Header Links -->
-<jsp:include page="./includes/HeaderLink.jsp"></jsp:include>
+<jsp:include page="../includes/HeaderLink.jsp"></jsp:include>
 
 <style>
 .btn-add {
@@ -69,13 +69,13 @@ String keyword = request.getParameter("keyword");
 	<div id="main-wrapper">
 
 		<!-- Navbar -->
-		<jsp:include page="./layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
 
 		<!-- Header -->
-		<jsp:include page="./layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
 
 		<!-- Sidebar -->
-		<jsp:include page="./layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
 
 		<div class="content-body">
 			<div class="container mt-5">
@@ -165,7 +165,7 @@ String keyword = request.getParameter("keyword");
 		</div>
 
 		<!-- Footer -->
-		<jsp:include page="./includes/Footer.jsp"></jsp:include>
+		<jsp:include page="../includes/Footer.jsp"></jsp:include>
 	</div>
 
 	<!-- Bootstrap Bundle -->
@@ -173,7 +173,7 @@ String keyword = request.getParameter("keyword");
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Scripts Include -->
-	<jsp:include page="./includes/Scripts.jsp"></jsp:include>
+	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 
 </body>
 </html>

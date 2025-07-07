@@ -11,7 +11,6 @@ public class ViewPaths {
 
     // Admin views
     public static final String ADMIN_DASHBOARD = "admin/AdminDashboard";
-    
     public static final String ADMIN_LIST_USER = "admin/ListUser";
     public static final String ADMIN_NEW_INGREDIENT = "admin/NewIngredient";
     public static final String ADMIN_UPDATE_INGREDIENT = "admin/UpdateIngredient";
@@ -32,10 +31,13 @@ public class ViewPaths {
     public static final String OLD_SIGNUP = "old_versions/Old_Signup";
 
     // User views
+    public static final String USER_DASHBOARD = "user/UserDashboard";
+    public static final String LIST_INGREDIENTS = "user/ListIngredients";
+    public static final String SEARCH_INGREDIENT = "user/SearchIngredient";
+    public static final String VIEW_INGREDIENT = "user/ViewIngredient";
+    public static final String Profile = "user/Profile";
+    public static final String PAYNOW = "user/PayNow";
+
+    // Common or home views
     public static final String HOME = "Home";
-    public static final String LIST_INGREDIENTS = "ListIngredients";
-    public static final String SEARCH_INGREDIENT = "SearchIngredient";
-    public static final String VIEW_INGREDIENT = "ViewIngredient";
-    public static final String Profile = "Profile";
-    public static final String PAYNOW = "PayNow";
 }
