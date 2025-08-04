@@ -22,9 +22,9 @@ public class ViewPaths {
     public static final String INCLUDE_SCRIPTS = "includes/Scripts";
 
     // Layout components
-    public static final String LAYOUT_HEADER = "layouts/AdminHeader";
-    public static final String LAYOUT_NAVBAR = "layouts/AdminNavbar";
-    public static final String LAYOUT_SIDEBAR = "layouts/AdminSidebar";
+    public static final String LAYOUT_HEADER = "layouts/Header";
+    public static final String LAYOUT_NAVBAR = "layouts/Navbar";
+    public static final String LAYOUT_SIDEBAR = "layouts/Sidebar";
 
     // Old/legacy views
     public static final String OLD_LOGIN = "old_versions/old_Login";

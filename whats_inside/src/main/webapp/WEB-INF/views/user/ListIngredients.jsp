@@ -45,7 +45,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Navbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -53,7 +53,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -61,7 +61,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Sidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->
@@ -73,8 +73,15 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 				<div
 					class="d-flex justify-content-between align-items-center mb-4 table-wrapper">
 					<div class="page-title">Ingredient List</div>
-					<a href="newingredient" class="btn btn-add rounded"> Add
-						Ingredient </a>
+					<%
+					String role = (String) session.getAttribute("role");
+					if ("admin".equalsIgnoreCase(role)) {
+					%>
+					<a href="newingredient" class="btn btn-add rounded">Add
+						Ingredient</a>
+					<%
+					}
+					%>
 				</div>
 
 				<!-- Table Section -->
@@ -100,18 +107,23 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 								<td><%=ing.getScientificName()%></td>
 								<td>
 									<div class="d-flex justify-content-center gap-2">
-										<a
-											href="viewingredient?id=<%=ing.getIngredientId()%>"
+										<a href="viewingredient?id=<%=ing.getIngredientId()%>"
 											class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">View
-										</a> <a href="updateingredient?id=<%=ing.getIngredientId()%>"
+										</a>
+										<%
+										if ("admin".equalsIgnoreCase(role)) {
+										%>
+										<a href="updateingredient?id=<%=ing.getIngredientId()%>"
 											class="btn btn-sm btn-outline-success d-flex align-items-center gap-1">
 											<i class="fas fa-pen"></i> Update
-										</a> 
-										<a href="deleteingredient?id=<%=ing.getIngredientId()%>"
+										</a> <a href="deleteingredient?id=<%=ing.getIngredientId()%>"
 											class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
 											onclick="return confirm('Are you sure you want to delete this ingredient?');">
 											<i class="fas fa-trash-alt"></i> Delete
 										</a>
+										<%
+										}
+										%>
 									</div>
 								</td>
 							</tr>
@@ -134,8 +146,8 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Footer start
         ***********************************-->
-			<jsp:include page="../includes/Footer.jsp"></jsp:include>
-			<!--**********************************
+		<jsp:include page="../includes/Footer.jsp"></jsp:include>
+		<!--**********************************
             Footer end
         ***********************************-->
 	</div>

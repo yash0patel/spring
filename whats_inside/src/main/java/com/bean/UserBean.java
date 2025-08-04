@@ -14,6 +14,7 @@ public class UserBean {
 	@NotBlank(message = "please Enter Gender")
 	private String gender;
 	private long userID;
+	private String role;
 	
 	public long getUserID() {
 		return userID;
@@ -29,7 +30,6 @@ public class UserBean {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-	private String role;
 	
 	public String getRole() {
 		return role;

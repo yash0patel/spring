@@ -14,7 +14,7 @@
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Navbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -22,7 +22,7 @@
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -30,7 +30,7 @@
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Sidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->

@@ -24,8 +24,8 @@
 	background-color: #2e3154; /* example */
 }
 
-.footerp{
-margin-left: 0 !important;
+.footerp {
+	margin-left: 0 !important;
 }
 </style>
 </head>
@@ -37,14 +37,17 @@ margin-left: 0 !important;
 	<div id="main-wrapper">
 
 		<div class="nav-header">
-			<a href="index.html" class="brand-logo"> <img class="logo-abbr"
-				src="./images/logo.png" alt=""> <img class="logo-compact"
-				src="./images/logo-text.png" alt=""> <img class="brand-title"
-				src="./images/logo-text.png" alt="">
+			<a href="userdashboard" class="brand-logo"
+				style="display: flex; justify-content: space-between;"> <img
+				class="logo-abbr" src="${pageContext.request.contextPath}/images/logo.png" alt=""
+				style="border-radius: 50%; box-shadow: 0 1px 4px #16e67566; object-fit: contain; max-width: 50px; max-height: 50px; margin: auto;">
+				<img class="brand-title" src="${pageContext.request.contextPath}/images/logo-text.png" alt=""
+				style="max-width: 180px; max-height: 200px; overflow: hidden; margin: 0 auto;">
 			</a>
 		</div>
+		
 
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 
 
 		<div class="content-body">
@@ -56,57 +59,58 @@ margin-left: 0 !important;
 							<p class="mb-0 tagline" id="tagline">Discover and manage
 								ingredients the smart way.</p>
 						</div>
-						
+
 						<div class="row no-gutters mt-5">
-									<div class="col-xl-12 px-5">
-										<div class="auth-form" style="border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); background-color: #fff;">
-										<div class="px-3">
-											<h4 class="text-center mb-4">Sign in your account</h4>
-											<div class="text-center mb-4">
+							<div class="col-xl-12 px-5">
+								<div class="auth-form"
+									style="border: 1px solid #dee2e6; border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background-color: #fff;">
+									<div class="px-3">
+										<h4 class="text-center mb-4">Sign in your account</h4>
+										<div class="text-center mb-4">
 											<samp class="text-danger">${error}</samp>
+										</div>
+										<form action="login" method="post">
+											<div class="form-group">
+												<label><strong>Email</strong></label> <input type="email"
+													class="form-control" placeholder="hello@example.com"
+													name="email">
 											</div>
-											<form action="login" method="post">
+											<div class="form-group">
+												<label><strong>Password</strong></label> <input
+													type="password" class="form-control" placeholder="Password"
+													name="password">
+											</div>
+											<div
+												class="form-row d-flex justify-content-between mt-4 mb-2">
 												<div class="form-group">
-													<label><strong>Email</strong></label> <input type="email"
-														class="form-control" placeholder="hello@example.com"
-														name="email">
-												</div>
-												<div class="form-group">
-													<label><strong>Password</strong></label> <input
-														type="password" class="form-control"
-														placeholder="Password" name="password">
-												</div>
-												<div
-													class="form-row d-flex justify-content-between mt-4 mb-2">
-													<div class="form-group">
-														<div class="form-check ml-2">
-															<input class="form-check-input" type="checkbox"
-																id="basic_checkbox_1"> <label
-																class="form-check-label" for="basic_checkbox_1">Remember
-																me</label>
-														</div>
-													</div>
-													<div class="form-group">
-														<a
-															href="${pageContext.request.contextPath}/forgotpassword">Forgot
-															Password?</a>
+													<div class="form-check ml-2">
+														<input class="form-check-input" type="checkbox"
+															id="basic_checkbox_1"> <label
+															class="form-check-label" for="basic_checkbox_1">Remember
+															me</label>
 													</div>
 												</div>
-												<div class="text-center">
-													<button type="submit" class="btn btn-primary btn-block">Sign
-														me in</button>
+												<div class="form-group">
+													<a href="${pageContext.request.contextPath}/forgotpassword">Forgot
+														Password?</a>
 												</div>
-											</form>
-											<div class="new-account mt-3">
-												<p>
-													Don't have an account? <a class="text-primary"
-														href="${pageContext.request.contextPath}/signup">Sign
-														up</a>
-												</p>
 											</div>
-										</div></div>
+											<div class="text-center">
+												<button type="submit" class="btn btn-primary btn-block">Sign
+													me in</button>
+											</div>
+										</form>
+										<div class="new-account mt-3">
+											<p>
+												Don't have an account? <a class="text-primary"
+													href="${pageContext.request.contextPath}/signup">Sign
+													up</a>
+											</p>
+										</div>
 									</div>
 								</div>
+							</div>
+						</div>
 						<!-- Spacer -->
 						<div style="height: 80px;"></div>
 
@@ -119,7 +123,7 @@ margin-left: 0 !important;
 		</div>
 
 	</div>
-		
+
 	<jsp:include page="../includes/Footer.jsp"></jsp:include>
 	<jsp:include page="../includes/Scripts.jsp"></jsp:include>
 
@@ -148,7 +152,7 @@ margin-left: 0 !important;
 	        }, 300);
 	    }, 3500); 
 	</script>
-	
+
 
 </body>
 

@@ -16,8 +16,8 @@ public class UserDao {
 
 	@Autowired
 	JdbcTemplate stmt;
-	@Autowired
-	PasswordEncoder passwordEncoder;
+//	@Autowired
+//	PasswordEncoder passwordEncoder;
 
 	public void adduser(UserBean user) {
 		stmt.update("insert into users(firstName,lastName,gender,email,password) values(?,?,?,?,?)",
@@ -34,7 +34,7 @@ public class UserDao {
 			UserBean userBean = stmt.queryForObject("select * from users where email = ?",
 					new BeanPropertyRowMapper<>(UserBean.class), new Object[] { email });
 			if (userBean != null) {
-				return passwordEncoder.matches(password, userBean.getPassword());
+				return password == userBean.getPassword();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -93,7 +93,7 @@ public class UserDao {
 
 	public Boolean changeUserPassword(String email, String newPassword) {
 		String sql = "update users set password = ? where email = ?";
-		int rowsAffected = stmt.update(sql, passwordEncoder.encode(newPassword), email);
+		int rowsAffected = stmt.update(sql, newPassword, email);
 		return rowsAffected > 0;
 	}
 

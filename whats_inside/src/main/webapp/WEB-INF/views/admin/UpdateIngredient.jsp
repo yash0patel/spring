@@ -8,9 +8,9 @@
 <body class="bg-light">
 
 <div id="main-wrapper">
-    <jsp:include page="../layouts/AdminNavbar.jsp"/>
-    <jsp:include page="../layouts/AdminHeader.jsp"/>
-    <jsp:include page="../layouts/AdminSidebar.jsp"/>
+    <jsp:include page="../layouts/Navbar.jsp"/>
+    <jsp:include page="../layouts/Header.jsp"/>
+    <jsp:include page="../layouts/Sidebar.jsp"/>
 
     <div class="content-body">
         <div class="container mt-5">

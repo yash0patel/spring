@@ -70,7 +70,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Navbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -78,7 +78,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -86,7 +86,7 @@ List<IngredientBean> ingredients = (List<IngredientBean>) request.getAttribute("
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Sidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->

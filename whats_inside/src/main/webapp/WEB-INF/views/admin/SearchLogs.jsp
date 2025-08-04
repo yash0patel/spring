@@ -58,7 +58,7 @@ List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Navbar.jsp"></jsp:include>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -66,7 +66,7 @@ List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list
 		<!--**********************************
             Header start
         ***********************************-->
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -74,7 +74,7 @@ List<SearchLogBean> searchLog = (List<SearchLogBean>) request.getAttribute("list
 		<!--**********************************
             Sidebar start
         ***********************************-->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Sidebar.jsp"></jsp:include>
 		<!--**********************************
             Sidebar end
         ***********************************-->

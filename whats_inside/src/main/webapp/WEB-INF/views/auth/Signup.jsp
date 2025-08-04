@@ -35,14 +35,16 @@ margin-left: 0 !important;
 	<div id="main-wrapper">
 
 		<div class="nav-header">
-			<a href="index.html" class="brand-logo"> <img class="logo-abbr"
-				src="./images/logo.png" alt=""> <img class="logo-compact"
-				src="./images/logo-text.png" alt=""> <img class="brand-title"
-				src="./images/logo-text.png" alt="">
+			<a href="userdashboard" class="brand-logo"
+				style="display: flex; justify-content: space-between;"> <img
+				class="logo-abbr" src="/images/logo.png" alt=""
+				style="border-radius: 50%; box-shadow: 0 1px 4px #16e67566; object-fit: contain; max-width: 50px; max-height: 50px; margin: auto;">
+				<img class="brand-title" src="/images/logo-text.png" alt=""
+				style="max-width: 180px; max-height: 200px; overflow: hidden; margin: 0 auto;">
 			</a>
 		</div>
 
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 
 
 		<div class="content-body">

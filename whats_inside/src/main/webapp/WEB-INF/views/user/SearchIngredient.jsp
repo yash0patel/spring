@@ -69,13 +69,13 @@ String keyword = request.getParameter("keyword");
 	<div id="main-wrapper">
 
 		<!-- Navbar -->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Navbar.jsp"></jsp:include>
 
 		<!-- Header -->
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 
 		<!-- Sidebar -->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Sidebar.jsp"></jsp:include>
 
 		<div class="content-body">
 			<div class="container mt-5">
@@ -92,11 +92,12 @@ String keyword = request.getParameter("keyword");
 						<div class="col-md-6">
 							<form action="search" method="post" class="mb-4">
 								<div class="input-group shadow-sm">
-								<%
-								    String search_term = (String) request.getAttribute("search_term");
-								    String searchValue = (search_term == null || search_term.trim().isEmpty()) ? "" : search_term;
-								%>
-									<input type="text" name="name" value="<%=searchValue%>" class="form-control"
+									<%
+									String search_term = (String) request.getAttribute("search_term");
+									String searchValue = (search_term == null || search_term.trim().isEmpty()) ? "" : search_term;
+									%>
+									<input type="text" name="name" value="<%=searchValue%>"
+										class="form-control"
 										placeholder="Search by Name or Scientific Name"
 										autocomplete="off">
 
@@ -136,15 +137,23 @@ String keyword = request.getParameter("keyword");
 											href="viewingredient?id=<%=ing.getIngredientId()%>&search_term=<%=request.getParameter("name")%>"
 											class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
 											<i class="fas fa-eye"></i> View
-										</a><a href="updateingredient?id=<%=ing.getIngredientId()%>&search_term=<%=request.getParameter("name")%>"
+										</a>
+										<%
+										String role = (String) session.getAttribute("role");
+										if ("admin".equalsIgnoreCase(role)) {
+										%>
+										<a
+											href="updateingredient?id=<%=ing.getIngredientId()%>&search_term=<%=request.getParameter("name")%>"
 											class="btn btn-sm btn-outline-success d-flex align-items-center gap-1">
 											<i class="fas fa-pen"></i> Update
-										</a>  
-										<a href="deleteingredient?id=<%=ing.getIngredientId()%>"
+										</a> <a href="deleteingredient?id=<%=ing.getIngredientId()%>"
 											class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1"
 											onclick="return confirm('Are you sure you want to delete this ingredient?');">
 											<i class="fas fa-trash-alt"></i> Delete
 										</a>
+										<%
+										}
+										%>
 									</div>
 								</td>
 							</tr>

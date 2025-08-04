@@ -120,13 +120,13 @@ h2.title {
 <jsp:include page="../includes/Preloader.jsp"></jsp:include>
 
 			<!-- Navbar -->
-		<jsp:include page="../layouts/AdminNavbar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Navbar.jsp"></jsp:include>
 
 		<!-- Header -->
-		<jsp:include page="../layouts/AdminHeader.jsp"></jsp:include>
+		<jsp:include page="../layouts/Header.jsp"></jsp:include>
 
 		<!-- Sidebar -->
-		<jsp:include page="../layouts/AdminSidebar.jsp"></jsp:include>
+		<jsp:include page="../layouts/Sidebar.jsp"></jsp:include>
 <div class="content-body">
 	<div class="container-detail">
 		<h2 class="title">Ingredient Detail</h2>
