@@ -55,20 +55,20 @@ public class SecurityConfig {
                 .requestMatchers("/", "/login", "/signup", "/saveuser", "/forgotpassword",
                                  "/verifyOtp", "/resendOtp","/home",
                                  "/css/**", "/js/**", "/icons/**", "/vendor/**", "/scss/**", "/images/**", "/static/**",
-                                 "/WEB-INF/**").permitAll()
+                                 "/WEB-INF/**", "/error", "/error/**").permitAll()
 
                 // Admin-only endpoints with GET/POST paths added
                 .requestMatchers("/admindashboard", "/admin/**", "/searchlog", "/deletesearchlog",
                                  "/fetchdata",
                                  "/newingredient", "/updateingredient", "/deleteingredient","/saveingredient",
                                  "/admin/AdminController/**", 
-                                 "/admin/UserController/**").hasRole("ADMIN")
+                                 "/admin/UserController/**","/listusers").hasRole("ADMIN")
 
                 // User + Admin accessible endpoints with both GET and POST common paths
                 .requestMatchers("/userdashboard", "/user/**",
                                  "/home", "/profile",
                                  "/user/PaymentController/**",
-                                 "/user/UserController/**").hasAnyRole("ADMIN", "USERS")
+                                 "/user/UserController/**","/processPayment","/paynow").hasAnyRole("ADMIN", "USERS")
 
                 // Any other requests require authentication
                 .anyRequest().authenticated()

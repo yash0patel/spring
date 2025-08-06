@@ -73,7 +73,7 @@ public class SessionController {
             user.setPassword(null);
             newSession.setAttribute("user", user);
 
-            return "redirect:/home";
+            return "redirect:/userdashboard";
         }
     }
 

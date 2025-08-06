@@ -20,7 +20,7 @@
 }
 
 .content-body {
-	margin-left: 0 !important;
+	margin-left: 0 !important; 
 }
 
 .nav-header {
