@@ -1,6 +1,7 @@
 package com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +33,26 @@ public class ScheduleController {
 	    return "ListSchedules";
 	}
 	
+	@GetMapping("sortoption")
+	public String sortOption() {
+		return "SortOption";
+	}
+	
+	@GetMapping("/listSchedulesByDate")
+	public String listSchedulesByDate(Model model) {
+	    model.addAttribute("schedules", scheduleRepository.findAll(Sort.by(Sort.DEFAULT_DIRECTION.DESC,"scheduleDate","startTime")));
+	    return "ListSchedules";
+	}
+	
 	@GetMapping("/deleteSchedule")
 	public String deleteSchedule(Integer id) {
 		scheduleRepository.deleteById(id);
 		return "redirect:/listSchedules";
+	}
+	
+	@GetMapping("/listSchedulesForTitle")
+	public String listSchedulesForTitle(String title, Model model) {
+	    model.addAttribute("schedules", scheduleRepository.searchByTitle("%" + title + "%"));
+	    return "ListSchedules";
 	}
 }
